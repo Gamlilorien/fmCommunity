@@ -1,5 +1,6 @@
 const express = require("express");
-const mongojs = require("mongojs");
+const exphbs = require("express-handlebars");
+const mongoose = require("mongoose");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -22,25 +23,54 @@ mongoose.connect("mongodb://localhost/fmCommunity", { useNewUrlParser: true });
 
 //Routes
 
+//Handlebars
+// app.engine (
+//   "handlebars",
+//   exphbs({
+//     defaultLayout: "main"
+//   })
+// );
+// app.set("view engine", "hanlebars");
+
+// // Starting the server, syncing our models ------------------------------------/
+// db.sequelize.sync(syncOptions).then(function() {
+//   app.listen(PORT, function() {
+//     console.log(
+//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+//       PORT,
+//       PORT
+//     );
+//   });
+// });
+
+// module.exports = app;
+
 //Get scrape route
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
-    axios.get("http://www.echojs.com/").then(function(response) {
+    axios.get("https://community.filemaker.com/community/discussions").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
   
       // Now, we grab every h2 within an article tag, and do the following:
-      $("article h2").each(function(i, element) {
+      $("div.j-act-init").each(function(i, element) {
         // Save an empty result object
         var result = {};
   
         // Add the text and href of every link, and save them as properties of the result object
+        //.children() DOESN'T work since what we are looking for is more than one level below our element selection
+        //Use .find() instead
         result.title = $(this)
-          .children("a")
+          .find("a.title")
           .text();
-        result.link = $(this)
-          .children("a")
+        result.slug = $(this)
+          .find("span.j-excerpt-slug")
+          .text();
+        link = $(this)
+          .find("a.title")
           .attr("href");
+        //links need the root https://community.filemaker.com/ 
+        result.link = "https://community.filemaker.com" + link;
   
         // Create a new Article using the `result` object built from scraping
         db.Article.create(result)

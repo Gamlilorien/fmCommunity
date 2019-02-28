@@ -6,15 +6,17 @@ In this project, we use Mongoose and Cheerio to scrape the latest forum posts fr
 
 ### Technology Used
 
-   * Node.js
-   * Express
+   * [Node.js](https://nodejs.org/en/) - for Javascript based server code and logic
+   * [Express](https://expressjs.com/) - companion Web Framework for node.js
    * Express-handlebars
-   * Mongoose
-   * Cheerio
-   * Axios
-   * Heroku
-
-3. **NOTE**: If you want to earn complete credit for your work, you must use all five of these packages in your assignment.
+   * [MongoDB](https://docs.mongodb.com/manual/) - An open-source no-SQL database for collecting and storing data.
+   * [Mongoose](http://mongoosejs.com/docs/api.html) - A tool to provide some structure to MongoDB that works well with Node.js
+   * [Cheerio](https://github.com/cheeriojs/cheerio) - A fantastic Javascript website scraping and parsing tool!
+   * [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for node.js used for making GET requests.
+   * [jQuery](https://jquery.com/) - for a few Javascript shortcuts like data selectors and parsing.
+   * [bootstrap css](https://getbootstrap.com/) - for a responsive front-end framwork and styling library.
+   * [Heroku](https://www.heroku.com/) - for app deployment and hosting
+   * Custom Javascript, HTML, and CSS - for everything else!
 
 4. In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
 

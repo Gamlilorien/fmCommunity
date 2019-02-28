@@ -1,6 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
+//These may not be necessary here as they will only be called in the Routes files
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -15,93 +16,85 @@ var PORT = 3000;
 //Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//Set public folder
+//Set public folder as root directory of app
 app.use(express.static("public"));
 
 //Connect to Mongo DB
+//NOTE: You can name you Mongo Databse whatever you want, I simply choose to name it "fmCommunity"
 mongoose.connect("mongodb://localhost/fmCommunity", { useNewUrlParser: true });
 
 //Routes
+//By saving these as seperate modules, our server.js file is kept smaller and a little tidier
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 //Handlebars
-// app.engine (
-//   "handlebars",
-//   exphbs({
-//     defaultLayout: "main"
-//   })
-// );
-// app.set("view engine", "hanlebars");
-
-// // Starting the server, syncing our models ------------------------------------/
-// db.sequelize.sync(syncOptions).then(function() {
-//   app.listen(PORT, function() {
-//     console.log(
-//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-//       PORT,
-//       PORT
-//     );
-//   });
-// });
-
-// module.exports = app;
+//This allows us to declare Handlebars as our VIEW ENGINE, and sets the default layout to 'main'
+app.engine (
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
 
 //Get scrape route
-app.get("/scrape", function(req, res) {
-    // First, we grab the body of the html with axios
-    axios.get("https://community.filemaker.com/community/discussions").then(function(response) {
-      // Then, we load that into cheerio and save it to $ for a shorthand selector
-      var $ = cheerio.load(response.data);
+// app.get("/scrape", function(req, res) {
+//     // First, we grab the body of the html with axios
+//     axios.get("https://community.filemaker.com/community/discussions").then(function(response) {
+//       // Then, we load that into cheerio and save it to $ for a shorthand selector
+//       var $ = cheerio.load(response.data);
   
-      // Now, we grab every h2 within an article tag, and do the following:
-      $("div.j-act-init").each(function(i, element) {
-        // Save an empty result object
-        var result = {};
+//       // Now, we grab every h2 within an article tag, and do the following:
+//       $("div.j-act-init").each(function(i, element) {
+//         // Save an empty result object
+//         var result = {};
   
-        // Add the text and href of every link, and save them as properties of the result object
-        //.children() DOESN'T work since what we are looking for is more than one level below our element selection
-        //Use .find() instead
-        result.title = $(this)
-          .find("a.title")
-          .text();
-        result.slug = $(this)
-          .find("span.j-excerpt-slug")
-          .text();
-        link = $(this)
-          .find("a.title")
-          .attr("href");
-        //links need the root https://community.filemaker.com/ 
-        result.link = "https://community.filemaker.com" + link;
+//         // Add the text and href of every link, and save them as properties of the result object
+//         //.children() DOESN'T work since what we are looking for is more than one level below our element selection
+//         //Use .find() instead
+//         result.title = $(this)
+//           .find("a.title")
+//           .text();
+//         result.slug = $(this)
+//           .find("span.j-excerpt-slug")
+//           .text();
+//         link = $(this)
+//           .find("a.title")
+//           .attr("href");
+//         //links need the root https://community.filemaker.com/ 
+//         result.link = "https://community.filemaker.com" + link;
   
-        // Create a new Article using the `result` object built from scraping
-        db.Article.create(result)
-          .then(function(dbArticle) {
-            // View the added result in the console
-            console.log(dbArticle);
-          })
-          .catch(function(err) {
-            // If an error occurred, log it
-            console.log(err);
-          });
-      });
+//         // Create a new Article using the `result` object built from scraping
+//         db.Article.create(result)
+//           .then(function(dbArticle) {
+//             // View the added result in the console
+//             console.log(dbArticle);
+//           })
+//           .catch(function(err) {
+//             // If an error occurred, log it
+//             console.log(err);
+//           });
+//       });
   
-      // Send a message to the client
-      res.send("Scrape Complete");
-    });
-  });
+//       // Send a message to the client
+//       res.send("Scrape Complete");
+//     });
+//   });
   
-  // Route for getting all Articles from the db
-  app.get("/articles", function(req, res) {
-    // Grab every document in the Articles collection
-    db.Article.find({})
-      .then(function(dbArticle) {
-        // If we were able to successfully find Articles, send them back to the client
-        res.json(dbArticle);
-      })
-      .catch(function(err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
-  });
+//   // Route for getting all Articles from the db
+//   app.get("/articles", function(req, res) {
+//     // Grab every document in the Articles collection
+//     db.Article.find({})
+//       .then(function(dbArticle) {
+//         // If we were able to successfully find Articles, send them back to the client
+//         res.json(dbArticle);
+//       })
+//       .catch(function(err) {
+//         // If an error occurred, send it to the client
+//         res.json(err);
+//       });
+//   });
   
   // Route for grabbing a specific Article by id, populate it with it's note
   app.get("/articles/:id", function(req, res) {

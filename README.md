@@ -8,7 +8,7 @@ In this project, we use Mongoose and Cheerio to scrape the latest forum posts fr
 
    * [Node.js](https://nodejs.org/en/) - for Javascript based server code and logic
    * [Express](https://expressjs.com/) - companion Web Framework for node.js
-   * Express-handlebars
+   * [Express-handlebars](https://www.npmjs.com/package/express-handlebars) - A handlebars express engine for node.js. Also see the Handlebarsjs documentation [here](https://handlebarsjs.com/).
    * [MongoDB](https://docs.mongodb.com/manual/) - An open-source no-SQL database for collecting and storing data.
    * [Mongoose](http://mongoosejs.com/docs/api.html) - A tool to provide some structure to MongoDB that works well with Node.js
    * [Cheerio](https://github.com/cheeriojs/cheerio) - A fantastic Javascript website scraping and parsing tool!

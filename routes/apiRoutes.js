@@ -43,11 +43,13 @@ module.exports = function(app) {
           });
       
           // Send a message to the client
-          res.send("Scrape Complete");
+          //res.send("Scrape Complete");
+          res.render("scrape");
+        
         });
       });
 
-    app.get("/articles", function(req, res) {
+    app.get("/api", function(req, res) {
         // Grab every document in the Articles collection
         db.Article.find({})
           .then(function(dbArticle) {
@@ -59,4 +61,7 @@ module.exports = function(app) {
             res.json(err);
           });
       });
+
+      
+
 }

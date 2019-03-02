@@ -15,7 +15,7 @@
                 <a class="nav-link" href="/scrape">Scrape</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/articles">API</a>
+                <a class="nav-link" href="/api">API</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -41,7 +41,7 @@
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-fmBlue rounded shadow-sm">
         <img class="mr-3" src="/images/logo_filemaker.png" alt="" height="48">
         <div class="lh-100">
-            <h6 class="mb-0 text-white lh-100">Powering Databases</h6>
+            <h6 class="mb-0 text-white lh-100">Custom Databases</h6>
             <small>Since 1985</small>
         </div>
     </div> {{!-- end Logo Banner --}}
@@ -52,39 +52,94 @@
 
         {{!-- Handlebars loop content goes here --}}
         {{#each dbArticles}}
+        <!-- Modal -->
+            <div class="modal fade" id="{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                  <div class="modal-body">
+                    <textarea rows="8" cols="50">
+
+                    </textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary saveNote" data-id="">Save changes</button>
+                    <button type="button" class="btn btn-secondary deleteNote" data-id="">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Article -->
             <div class="media text-muted pt-3">
-                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                <a href="{{link}}" target="_blank" alt="View the full post in a new window" title="View the full post in a new window">
+                    <i class="fas fa-external-link-square-alt post-icons blue mr-2"></i>
+                </a>
+                
+                {{!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> --}}
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <strong class="d-block text-gray-dark">{{title}}</strong>
                     {{slug}}
                     <br>
-                    <span class="articleLinks"><a href="{{link}}" target="_blank">View Full Article</a></span>
+                    <span class="articleNotes"><a href="" class="modalBtn" data-toggle="modal" data-target="#{{id}}">Notes</a></span>
+                    <p>
+                        <a href="#" alt="Delete this post" title="Delete this post">
+                            <i class="fas fa-times-circle post-icons ml-2 text-black-50"></i>
+                            {{!-- <i class="fas fa-trash-alt post-icons text-danger ml-2"></i> --}}
+                        </a>
+                    </p>
                 </p>
             </div>
+
         {{/each}}
 
-        
+<!-- Button trigger modal -->
+<a data-toggle="modal" href="#idModal">
+  Launch demo modal
+</a>
 
-        {{!-- <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">@username</strong>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            </p>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea rows="8" cols="50">
 
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">@username</strong>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            </p>
-        </div> --}}
+        </textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary deleteNote" data-id="">Delete</button>
+        <button type="button" class="btn btn-primary saveNote" data-id="">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {{!-- Card Footer --}}
         <small class="d-block text-right mt-3">
-            <a href="#">All Posts</a>
+            {{!-- <a href="#">All Posts</a> --}}
         </small>
     </div> {{!-- END Rounded Card --}}
 
 </main> {{!-- END Main Content --}}
+
+<script>
+    //Normal logic for triggering modals doesn't work. Possibly an async function?
+    //See: https://stackoverflow.com/questions/15473886/twitter-bootstrap-href-in-modal-not-working
+    $('a.modalBtn').on('click', function () {
+        var id = $(this).attr('data-target');
+        $(id).modal();
+    })
+</script>

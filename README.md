@@ -2,7 +2,15 @@
 
 ### Overview
 
-In this project, we use Mongoose and Cheerio to scrape the latest forum posts from the FileMaker community website and save the basic info (along with links to the original articles) to our own web application and Mongo Databse for to then easily peruse and allow them to leave their own local comments for each article.
+This project uses Mongoose and Cheerio to scrape the latest forum posts from the FileMaker community website and save the basic info (along with links to the original articles) to a responsive web application and Mongo Databse for users to then easily peruse and search through.
+
+### Project Objectives
+
+   1. Scrape Articles from a website of my choosing. I chose https://community.filemaker.com/community/discussions
+
+   2. Save the articles to a Mongo DB using Mongoose
+
+   3. Allow users to add comments to an article, as well as have the option to delete such comments or even the article itself.
 
 ### Technology Used
 

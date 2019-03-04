@@ -21,7 +21,10 @@ app.use(express.static("public"));
 
 //Connect to Mongo DB
 //NOTE: You can name you Mongo Databse whatever you want, I simply choose to name it "fmCommunity"
-mongoose.connect("mongodb://localhost/fmCommunity", { useNewUrlParser: true });
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fmCommunity";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //Routes
 //By saving these as seperate modules, our server.js file is kept smaller and a little tidier

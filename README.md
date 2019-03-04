@@ -8,9 +8,9 @@ This project uses Mongoose and Cheerio to scrape the latest forum posts from the
 
    1. Scrape Articles from a website of my choosing. I chose https://community.filemaker.com/community/discussions
 
-   2. Save the articles to a Mongo DB using Mongoose
+   2. Save the articles to a No-SQL Database using Mongo DB and Mongoose
 
-   3. Allow users to add comments to an article, as well as have the option to delete such comments or even the article itself.
+   3. Allow users to add notes to an article, as well as have the option to delete such notes, update or add to these notes or even delete the entire article itself.
 
 ### Technology Used
 

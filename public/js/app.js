@@ -9,10 +9,24 @@
 
     $("a.deletePost").on("click", function () {
         let id = $(this).attr("data-id");
-        console.log(id);
         $.ajax({
-            url: "/delete/" +id,
+            url: "/post/" +id,
             type: "DELETE",
+        }).then(() => {
+            location.reload();
+        })
+    });
+
+    $(".saveNote").on("click", function () {
+        let id = $(this).attr("data-id");
+        let nb = "#nb" +id;
+        let note = $(nb).val();
+        $.ajax({
+            url: "/post/" +id,
+            type: "POST",
+            data: {
+                body: note
+            }
         }).then(() => {
             location.reload();
         })

@@ -9,5 +9,6 @@ span.articleNotes {
 }
 
 textarea {
+    width: 100%;
     resize: none;
 }

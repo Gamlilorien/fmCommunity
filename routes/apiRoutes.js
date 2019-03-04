@@ -68,6 +68,12 @@ module.exports = function(app) {
         .catch(err => res.json(err))
       });
 
+      app.delete("/note/:id", function(req, res) {
+        db.Note.findByIdAndRemove(req.params.id)
+        .then(dbNote => res.json(dbNote))
+        .catch(err => res.json(err))
+      });
+
 
       app.get("/post/:id", function(req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...

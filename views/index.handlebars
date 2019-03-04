@@ -31,7 +31,6 @@
         Posts
         <span class="badge badge-pill bg-light align-text-bottom" id="postCount">27</span>
     </a>
-    <a class="nav-link" href="#">Explore</a>
   </nav>
 </div>
 
@@ -64,12 +63,12 @@
                     </div>
                   <div class="modal-body">
                     <textarea rows="8" cols="50">
-
+                        {{Note}}
                     </textarea>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary saveNote" data-id="">Save changes</button>
-                    <button type="button" class="btn btn-secondary deleteNote" data-id="">Delete</button>
+                    <button type="button" class="btn btn-primary saveNote" data-id="{{id}}">Save changes</button>
+                    <button type="button" class="btn btn-secondary deleteNote" data-id="{{id}}">Delete</button>
                   </div>
                 </div>
               </div>
@@ -88,7 +87,7 @@
                     <br>
                     <span class="articleNotes"><a href="" class="modalBtn" data-toggle="modal" data-target="#{{id}}">Notes</a></span>
                     <p>
-                        <a href="#" alt="Delete this post" title="Delete this post">
+                        <a href="#" class="deletePost" alt="Delete this post" title="Delete this post" data-id={{id}}>
                             <i class="fas fa-times-circle post-icons ml-2 text-black-50"></i>
                             {{!-- <i class="fas fa-trash-alt post-icons text-danger ml-2"></i> --}}
                         </a>
@@ -134,12 +133,3 @@
     </div> {{!-- END Rounded Card --}}
 
 </main> {{!-- END Main Content --}}
-
-<script>
-    //Normal logic for triggering modals doesn't work. Possibly an async function?
-    //See: https://stackoverflow.com/questions/15473886/twitter-bootstrap-href-in-modal-not-working
-    $('a.modalBtn').on('click', function () {
-        var id = $(this).attr('data-target');
-        $(id).modal();
-    })
-</script>

@@ -34,7 +34,7 @@ module.exports = function(app) {
             db.Article.create(result)
               .then(function(dbArticle) {
                 // View the added result in the console
-                console.log(dbArticle);
+                //console.log(dbArticle);
               })
               .catch(function(err) {
                 // If an error occurred, log it
@@ -62,6 +62,10 @@ module.exports = function(app) {
           });
       });
 
-      
+      app.delete("/delete/:id", function(req, res) {
+        db.Article.findByIdAndRemove(req.params.id)
+        .then(dbArticle => res.json(dbArticle))
+        .catch(err => res.json(err))
+      });
 
 }

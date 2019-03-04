@@ -1,4 +1,5 @@
 # fmCommunity
+![fmCommunity](fmCommunity.png)
 
 ### Overview
 
@@ -27,3 +28,20 @@ This project uses Mongoose and Cheerio to scrape the latest forum posts from the
    * Custom Javascript, HTML, and CSS - for everything else!
 
 ---
+
+### Final Functionality
+
+The end result has the following functionality:
+
+   1. The POST tab show all saved articles to our hosted Mongo DB in a pleasing list fashion using Bootstrap and Handlebars for styling and templating respectively. This is also the default view (or home ROUTE) when the application first loads. For each post ITEM there are three main buttons: 
+      1. The arrow button to open a new window to the original article on the FileMaker Community website.
+      2. An "X" button to allow users to delete the post from our app directly (and the Mongo DB populating the post item).
+      3. A "Notes" text-link that opens a modal where users can add, update, view or delete a note for the particular note item.
+
+   2. The SCRAPE tab scrapes recent posts from the FileMaker Community website and saves the following informaion into our online Mongo DB
+      * Post Title
+      * Post Slug (or brief description)
+      * Post URL
+      * The date/ timestamp when scraped (for sorting purposes)
+   
+   3. The API tap literally displays all of the saved information in our app as raw json data for easy parsing into FileMaker for further processing. Simply visit https://radiant-plains-89296.herokuapp.com/api to view, now authentication required.

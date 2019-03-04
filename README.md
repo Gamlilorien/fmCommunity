@@ -44,4 +44,4 @@ The end result has the following functionality:
       * Post URL
       * The date/ timestamp when scraped (for sorting purposes)
    
-   3. The API tap literally displays all of the saved information in our app as raw json data for easy parsing into FileMaker for further processing. Simply visit https://radiant-plains-89296.herokuapp.com/api to view, now authentication required.
+   3. The API tap literally displays all of the saved information in our app as raw json data for easy parsing into FileMaker for further processing. Simply visit https://radiant-plains-89296.herokuapp.com/api to view, no authentication required.

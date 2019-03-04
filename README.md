@@ -33,10 +33,10 @@ This project uses Mongoose and Cheerio to scrape the latest forum posts from the
 
 The end result has the following functionality:
 
-   1. The POST tab show all saved articles to our hosted Mongo DB in a pleasing list fashion using Bootstrap and Handlebars for styling and templating respectively. This is also the default view (or home ROUTE) when the application first loads. For each post ITEM there are three main buttons: 
-      1. The arrow button to open a new window to the original article on the FileMaker Community website.
-      2. An "X" button to allow users to delete the post from our app directly (and the Mongo DB populating the post item).
-      3. A "Notes" text-link that opens a modal where users can add, update, view or delete a note for the particular note item.
+   1. The POST tab shows all saved articles to our hosted Mongo DB in a pleasing list fashion using Bootstrap and Handlebars for styling and templating respectively. This is also the default view (or home ROUTE) when the application first loads. For each post ITEM there are three main buttons: 
+      1. To the far left a blue arrow button allows users to open a new window to the original article on the FileMaker Community website.
+      2. The gray "X" button to the right of each post allow users to delete the post from our app entirely (also deleting it from the Mongo DB simeltanously).
+      3. The "Notes" text-link beneath each post description opens a modal where users can add, update, view or delete a note for that particular note item.
 
    2. The SCRAPE tab scrapes recent posts from the FileMaker Community website and saves the following informaion into our online Mongo DB
       * Post Title
